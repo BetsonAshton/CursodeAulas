@@ -6,7 +6,6 @@
 2. Bootstrap CSS
 3. Entity Framework (EF)
 4. CookieAuthentication para AspNet
-5. Envio de email para recuperação de senha
-6. SOLID
+5.SOLID
 ## Aviso!
 > Criar o banco de dados com o nome BD_Cursos para rodar esse projeto
