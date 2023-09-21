@@ -1,0 +1,46 @@
+﻿@using Cursos.Data.Entities;
+
+@{
+    var professor = ViewBag.Professor as List<Professor>;
+
+}
+
+<div class="card m-2">
+    <div class="card-header">
+        <h5 class="card-title">Consulta dos Professores</h5>
+    </div>
+    <div class="card-body p-2 text-center">
+        <p class="card-text"><h4>Listagem de Professores para o Curso.</h4></p>
+        <div class="table-responsive">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome do professor</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in professor)
+                    {
+                        <tr>
+                            <td>@item.Nome</td>
+                            <td>
+                                 <a href="/Professor/Edicao/@item.IdProfessor" 
+                                    class="btn btn-outline-primary btn-sm">
+                                    Editar
+                                </a>
+                                 <a href="/Professor/Exclusao/@item.IdProfessor"
+                                    onclick="return confirm('Deseja realmente excluir o professor: @item.Nome?');"
+                                    class="btn btn-outline-danger btn-sm">
+                                    Excluir
+                                </a>
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

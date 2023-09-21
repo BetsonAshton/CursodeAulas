@@ -1,0 +1,113 @@
+﻿@using Newtonsoft.Json
+@using Cursos.Models.Authentication
+
+@{    
+    var user = User.Identity.Name; 
+    var authenticationModel = JsonConvert.DeserializeObject<AuthenticationModel>(user);
+}
+
+
+<html>
+<head>
+
+    <title>Cursos de Aprendizado</title>
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- referência para os arquivos CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Cursos de Aprendizado</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/Home/Index">Dashboard</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="gerenciar-cursos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Gerenciar Cursos
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="gerenciar-cursos">
+                <li><a class="dropdown-item" href="/Curso/Cadastro">Adicionar Cursos</a></li>
+                <li><a class="dropdown-item" href="/Curso/Consulta">Consultar Cursos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="gerenciar-professores" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Gerenciar professores
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="gerenciar-professores">
+                <li><a class="dropdown-item" href="/Professor/Cadastro">Adicionar Professores</a></li>
+                <li><a class="dropdown-item" href="/Professor/Consulta">Consultar Professores</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle btn btn-sm btn-light" style="border: 1px solid #ccc;" href="#" id="user-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @authenticationModel.Nome | @authenticationModel.Email
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-dropdown">
+                
+                <li>
+                    <a class="dropdown-item" href="/Adm/Logout"
+                        onclick="return confirm('Deseja realmente sair do sistema?');">
+                        Sair do Sistema
+                    </a>
+                </li>
+              </ul>
+            </li>
+          </ul>         
+        </div>
+      </div>
+    </nav>
+
+      @if (TempData["MensagemSucesso"] != null)
+
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Sucesso!</strong> @TempData["MensagemSucesso"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    else if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Erro!</strong> @TempData["MensagemErro"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+
+    <div class="m-4">
+        @** Define o local onde será inserido 
+  o conteúdo das demais páginas *@
+        @RenderBody()
+    </div>
+
+    <!-- referência para arquivos JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json'
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>
+

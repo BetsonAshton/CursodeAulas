@@ -1,0 +1,62 @@
+﻿@model Cursos.Models.Curso.CursoCadastroViewModel
+
+<div class="card m-4">
+    <div class="card-body">
+        <h5>Cadastro de curso</h5>
+        <p>Inclua os cursos.</p>
+        <hr />
+
+        @using (Html.BeginForm())
+        {
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <label>Nome do curso:</label>
+                    @Html.TextBoxFor(model => model.Nome, new {
+                        @class = "form-control",
+                        @placeholder = "Digite o nome do curso."
+                    })
+                    <span class="text-danger">
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </span>
+                </div>
+                <div class="col-md-3">
+                    <label>Data do curso:</label>
+                    @Html.TextBoxFor(model => model.Data, new {
+                        @class = "form-control",
+                        @type = "date"
+                    })
+                    <span class="text-danger">
+                        @Html.ValidationMessageFor(model => model.Data)
+                    </span>
+                </div>
+                <div class="col-md-3">
+                    <label>Valor do curso:</label>
+                    @Html.TextBoxFor(model => model.Valor, new {
+                        @class = "form-control",
+                        @placeholder = "Valor do curso."
+                    })
+                    <span class="text-danger">
+                        @Html.ValidationMessageFor(model => model.Valor)
+                    </span>
+                </div>
+            </div>
+                 <div class="row mb-2">
+                <div class="col-md-6">
+                    <label>Professor do curso:</label>
+                    @Html.DropDownListFor(model => model.IdProfessor, ViewBag.Professor as List<SelectListItem>, "Escolha uma opção", new {
+                        @class = "form-select"
+                    })
+                    <span class="text-danger">
+                        @Html.ValidationMessageFor(model => model.IdProfessor)
+                    </span>
+                </div>
+                
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-success" value="Realizar Cadastro" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

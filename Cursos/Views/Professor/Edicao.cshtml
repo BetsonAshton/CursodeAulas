@@ -1,0 +1,39 @@
+﻿
+@model Cursos.Models.Professor.ProfessorEdicaoViewModel
+
+<div class="card m-4">
+    <div class="card-body">
+        <h5>Edição de nome de professor</h5>
+        <p>Altere os dados do professor desejado.</p>
+        <hr />
+
+        @using (Html.BeginForm())
+        {
+            <div>
+                @Html.HiddenFor(model => model.IdProfessor)
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-9">
+                    <label>Nome da professor:</label>
+                    @Html.TextBoxFor(model => model.Nome, new {
+                        @class = "form-control",
+                         @style = "width: 400px",
+                        @placeholder = "Digite o nome do professor."
+                    })
+                    <span class="text-danger">
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </span>
+                </div>
+               
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-primary" value="Salvar Alterações" />
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

@@ -1,0 +1,46 @@
+﻿@using Cursos.Models.Curso
+@model List<CursoConsultaViewModel>
+
+<!-- rest of your view code -->
+
+
+<div class="card m-4">
+    <div class="card-body">
+        <h5>Consulta de Cursos</h5>
+        <p>Listagem de cursos cadastrados.</p>
+        <hr/>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome do Curso</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>ID do Professor</th>
+                            <th>Professor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Nome</td>
+                                <td>@item.Data</td>
+                                <td>@item.Valor</td>
+                                <td>@item.IdProfessor</td>
+                                <td>@item.Professor</td> <!-- Assuming this is the property for Professor's name -->
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p>Nenhum curso encontrado.</p>
+        }
+    </div>
+</div>

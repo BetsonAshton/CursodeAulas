@@ -1,0 +1,29 @@
+﻿@{
+    //capturar o nome do controlador que estamos acessando
+    var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+
+    //verificando qual controlador está sendo acessado
+    //e definir o layout que a página herdar
+    switch (controllerName)
+    {
+        case "Adm":
+            Layout = "~/Views/Shared/_AdmLayout.cshtml";
+            break;
+
+
+            
+        case "Home":
+            Layout = "~/Views/Shared/_MainLayout.cshtml";
+            break;
+
+       case "Professor":
+       Layout = "~/Views/Shared/_MainLayout.cshtml";
+       break;
+
+        case "Curso":
+       Layout = "~/Views/Shared/_MainLayout.cshtml";
+       break;
+
+    }
+}
+
